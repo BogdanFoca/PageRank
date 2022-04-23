@@ -39,7 +39,7 @@ function R = Iterative(nume, d, eps)
         end
         PR(i) = (1-d) / N + d * sum;
     end
-    k = 2;
+    k = 0;
     while k <= N && norm(last_PR - PR, 2) >= eps
         last_PR = PR;
         for i=1:N

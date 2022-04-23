@@ -17,6 +17,7 @@ function R = Algebraic(nume, d)
         fp = fp + 1;
         nr = A(fp);
         fp = fp + 1;
+        K(i, i) = nr;
         for j = 1:nr
             k = A(fp);
             fp = fp + 1;
@@ -26,15 +27,16 @@ function R = Algebraic(nume, d)
         end
     end
     
-    M_t = PR_Inv(M);
+    Mm = (PR_Inv(K) * M)';
+    last_R = ones(N, 1) / N;
+    E = ones(N);
+    new_R = (d * Mm + (1 - d) * E / N) * last_R;
     
-    PR = rand(N, 1);
-    PR = PR ./ norm(PR, 1);
-    last_PR = ones(N, 1) * inf;
-    
-    while(norm(PR - last_PR, 2) > eps)
-       last_PR = PR;
-       PR = M_t * PR;
+    k=0;
+    while k <= N
+       last_R = new_R;
+       new_R = (d * Mm + (1 - d) * E / N) * last_R;
+       k = k + 1;
     end
-    R = PR;
+    R = new_R;
 end
