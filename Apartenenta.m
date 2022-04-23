@@ -8,5 +8,6 @@ function y = Apartenenta(x, val1, val2)
     else
         y = (1 / (val2 - val2)) * x - (val1 / (val2 - val1));
     end
+end
 
 	

@@ -22,14 +22,11 @@ function R = Algebraic(nume, d)
             fp = fp + 1;
             if node ~= k
                 M(node, k) = 1;
-                M(k, node) = 1;
             end
         end
     end
     
-    [Q R] = Gram_Schmidt_Modified(M);
-    
-    M_t = inverse(R) * Q';
+    M_t = PR_Inv(M);
     
     PR = rand(N, 1);
     PR = PR ./ norm(PR, 1);
@@ -40,18 +37,4 @@ function R = Algebraic(nume, d)
        PR = M_t * PR;
     end
     R = PR;
-end
-
-function [Q, R] = Gram_Schmidt_Modified(A)
-  [m n] = size(A);
-  Q = zeros(m,n);
-  R = zeros(n);
-  for i = 1 : n
-    R(i, i) = norm(A(:, i), 2);
-    Q(:, i) = A(:, i) / R(i, i);
-    for j = i + 1 : n
-      R(i, j) = Q(:, i)' * A(:, j);
-      A(:, j) = A(:, j) - Q(:, i) * R(i, j);
-    end
-  end
 end
