@@ -39,9 +39,8 @@ function R = Iterative(nume, d, eps)
         end
         PR(i) = (1-d) / N + d * sum;
     end
-    k = 0;
-    %cat timp nu este in limita de eroare sau iteratia maxima
-    while k <= N && norm(last_PR - PR, 2) >= eps
+    %cat timp nu este in limita de eroare
+    while norm(last_PR - PR, 2) >= eps
         last_PR = PR;  %Pr curent devine ultimul PR
         for i=1:N  %recalcul PR
             sum = 0;
@@ -52,7 +51,6 @@ function R = Iterative(nume, d, eps)
             end
             PR(i) = (1-d) / N + d * sum;
         end
-        k = k + 1;
     end
     R = PR;
 end

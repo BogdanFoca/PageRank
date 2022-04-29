@@ -27,7 +27,7 @@ function R = Algebraic(nume, d)
         end
     end
     
-    Mm = (PR_Inv(K) * M)';  %calcul M^
+    Mm = (PR_Inv(K) * M)';  %calcul M
     last_R = ones(N, 1) / N;  %R initial
     E = ones(N);
     new_R = (d * Mm + (1 - d) * E / N) * last_R;
