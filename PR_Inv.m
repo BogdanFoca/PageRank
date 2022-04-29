@@ -1,6 +1,8 @@
 function B = PR_Inv(A)
 	% Functia care calculeaza inversa matricii A folosind factorizari Gram-Schmidt
-	% Se va inlocui aceasta linie cu descrierea algoritmului de inversare
+	% Se descompune matricea A in QR folosind Gram Schmidt modificat
+    % Inversa matricei va fi R inversat * Q transpus
+    % R fiind matrice triunghiulara se inverseaza foarte usor
     [Q, R] = Gram_Schmidt_Modified(A);
     
     B = inv(R) * Q';

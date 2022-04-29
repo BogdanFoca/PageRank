@@ -11,18 +11,19 @@ function [R1 R2] = PageRank(nume, d, eps)
     
     fclose(fileId);
     
-    PR1 = Iterative(nume, d, eps);
-    PR2 = Algebraic(nume, d);
+    PR1 = Iterative(nume, d, eps);  %Page Rank iterativ
+    PR2 = Algebraic(nume, d);  %Page Rank algebraic
     
     fileId = fopen(nume + ".out", "w");
     fprintf(fileId, "%d\n\n", N);
-    fprintf(fileId, "%f\n", PR1(:));
+    fprintf(fileId, "%f\n", PR1(:));  %scriu PR1 in fisier
     fprintf(fileId, "\n");
-    fprintf(fileId, "%f\n", PR2(:));
+    fprintf(fileId, "%f\n", PR2(:));  %scriu PR2 in fisier
     fprintf(fileId, "\n");
     
     PR_1 = PR2;
     Indexes = [1:N];
+    %ordonare indecsi si page rank score descrescator
     for i=1:N
        for j=1:N
         if PR_1(i) >= PR_1(j)
@@ -31,6 +32,7 @@ function [R1 R2] = PageRank(nume, d, eps)
         end
        end
     end
+    %afisare ranking
     for i=1:N
        fprintf(fileId, "%d %d %f\n", i, Indexes(i), Apartenenta(PR_1(i), val1, val2)); 
     end
