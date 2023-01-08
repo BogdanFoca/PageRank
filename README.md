@@ -1,4 +1,8 @@
-# PageRank
+# PageRank - Numerical Methods - Project 1
+
+A pdf with the detailed description can be found in the repo.
+
+#
 
 For the algorithms, I used the formulas presented in the given sources.
 
